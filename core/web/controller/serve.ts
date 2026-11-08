@@ -21,12 +21,12 @@ export default (globalContext: GlobalContext): Router => {
         .send(`No serve found with name ${escape(anyParams?.serve)}`)
     }
 
-    const ext = anyParams.ext;
+    const ext = anyParams.ext
     const relativePath = Array.isArray(ext)
-      ? ext.join("/")
-      : typeof ext === "string"
+      ? ext.join('/')
+      : typeof ext === 'string'
         ? ext
-        : "";
+        : ''
 
     const absolutePath = join(serve.sender.path, serve.frontend, relativePath)
 

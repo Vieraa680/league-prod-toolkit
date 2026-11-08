@@ -6,3 +6,4 @@ core-build/
 cache/
 .DS_Store
 cert/**
+sample-champselect.json

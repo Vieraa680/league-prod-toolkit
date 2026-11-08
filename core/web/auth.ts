@@ -32,7 +32,7 @@ export async function runAuth (
   })
 
   config = configReq?.config
-  const authActive = config.enabled as boolean
+  const authActive = (config?.enabled as boolean) ?? false
 
   if (!authActive) {
     server.all('{*path}', (req, res, next) => {
@@ -45,7 +45,9 @@ export async function runAuth (
   log.info('=========================')
   log.info('Authentication is enabled')
 
-  allowedKeys.add(config['super-api-key'])
+  if (typeof config['super-api-key'] === 'string') {
+    allowedKeys.add(config['super-api-key'])
+  }
 
   log.info(`Admin API key: ${config['super-api-key'] as string}`)
   log.info('=========================')
